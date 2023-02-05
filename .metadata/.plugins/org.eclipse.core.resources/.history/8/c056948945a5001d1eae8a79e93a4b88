@@ -1,0 +1,45 @@
+package net.javaguides.springboot.mapper;
+
+import javax.annotation.processing.Generated;
+import net.javaguides.springboot.dto.UserDto;
+import net.javaguides.springboot.entity.User;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2023-02-05T13:05:09+0530",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 1.3.1100.v20200828-0941, environment: Java 14.0.2 (Oracle Corporation)"
+)
+public class AutoUserMapperImpl implements AutoUserMapper {
+
+    @Override
+    public UserDto mapToUserDto(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        UserDto userDto = new UserDto();
+
+        userDto.setEmail( user.getEmail() );
+        userDto.setFirstName( user.getFirstName() );
+        userDto.setId( user.getId() );
+        userDto.setLastName( user.getLastName() );
+
+        return userDto;
+    }
+
+    @Override
+    public User mapToUser(UserDto userDto) {
+        if ( userDto == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setEmail( userDto.getEmail() );
+        user.setFirstName( userDto.getFirstName() );
+        user.setId( userDto.getId() );
+        user.setLastName( userDto.getLastName() );
+
+        return user;
+    }
+}
