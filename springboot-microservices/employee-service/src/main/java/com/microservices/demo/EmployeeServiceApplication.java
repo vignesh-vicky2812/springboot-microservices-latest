@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class EmployeeServiceApplication {
 
 //	@Bean
+//	@LoanBalanced
 //	public RestTemplate restTemplate() {
 //		return new RestTemplate();
 //	}
