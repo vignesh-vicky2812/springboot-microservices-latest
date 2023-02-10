@@ -1,7 +1,5 @@
 package com.microservices.demo.service.impl;
 
-//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-//import io.github.resilience4j.retry.annotation.Retry;
 import lombok.AllArgsConstructor;
 import com.microservices.demo.dto.APIResponseDto;
 import com.microservices.demo.dto.DepartmentDto;
@@ -12,6 +10,10 @@ import com.microservices.demo.mapper.EmployeeMapper;
 import com.microservices.demo.repository.EmployeeRepository;
 import com.microservices.demo.service.APIClient;
 import com.microservices.demo.service.EmployeeService;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +29,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	private EmployeeRepository employeeRepository;
 
-	// private RestTemplate restTemplate;
-//	private WebClient webClient;
-	private APIClient apiClient;
+//	 private RestTemplate restTemplate;
+	private WebClient webClient;
+//	private APIClient apiClient;
 
 	@Override
 	public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
@@ -43,9 +45,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return savedEmployeeDto;
 	}
 
-	// @CircuitBreaker(name = "${spring.application.name}", fallbackMethod =
-	// "getDefaultDepartment")
-//    @Retry(name = "${spring.application.name}", fallbackMethod = "getDefaultDepartment")
+//	@CircuitBreaker(name = "${spring.application.name}", fallbackMethod = "getDefaultDepartment")
+	@Retry(name = "${spring.application.name}", fallbackMethod = "getDefaultDepartment")
 	@Override
 	public APIResponseDto getEmployeeById(Long employeeId) {
 
@@ -56,22 +57,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 //                DepartmentDto.class);
 //        DepartmentDto departmentDto = responseEntity.getBody();
 
-//		DepartmentDto departmentDto = webClient.get()
-//				.uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode()).retrieve()
-//				.bodyToMono(DepartmentDto.class).block();
+		DepartmentDto departmentDto = webClient.get()
+				.uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode()).retrieve()
+				.bodyToMono(DepartmentDto.class).block();
 
-		DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
+//		DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
 
-//		OrganizationDto organizationDto = webClient.get()
-//				.uri("http://localhost:8083/api/organizations/" + employee.getOrganizationCode()).retrieve()
-//				.bodyToMono(OrganizationDto.class).block();
+		OrganizationDto organizationDto = webClient.get()
+				.uri("http://localhost:8083/api/organizations/" + employee.getOrganizationCode()).retrieve()
+				.bodyToMono(OrganizationDto.class).block();
 
 		EmployeeDto employeeDto = EmployeeMapper.mapToEmployeeDto(employee);
 
 		APIResponseDto apiResponseDto = new APIResponseDto();
 		apiResponseDto.setEmployee(employeeDto);
 		apiResponseDto.setDepartment(departmentDto);
-//		apiResponseDto.setOrganization(organizationDto);
+		apiResponseDto.setOrganization(organizationDto);
 		return apiResponseDto;
 	}
 

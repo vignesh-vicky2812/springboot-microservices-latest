@@ -1,0 +1,26 @@
+https://spring.io/projects/spring-cloud-circuitbreaker
+
+https://resilience4j.readme.io/
+
+https://resilience4j.readme.io/docs/circuitbreaker
+
+https://resilience4j.readme.io/docs/retry
+
+rabbit mq for refreshing the configuration
+
+Spring Cloud Sleuth is used to provide distributed tracing functionality to microservice-based applications. It helps to correlate logs and traces across multiple microservices and facilitates the debugging process. Sleuth adds unique trace and span IDs to log statements, making it easier to trace and understand the flow of a request as it moves through the microservices. Additionally, Sleuth integrates with popular distributed tracing systems such as Zipkin and Jaeger to store and visualize the trace data.
+
+
+fallback method -- if out of 3 microservices 3rd is down, it will return a default response to its previous ms which are dependent on them
+circuit breaker -- 3rd is down , it wont allow 2nd to hit 3rd continuosly to save resources
+retry -- it will retry for several times which we mention
+ratelimiter -- limit the no. of calls from 3rd to 4th
+
+circuit breaker: has three states open, closed, half open
+closed: if service is in closed state then it can make request to other service
+
+open: here we maintain threshold like for eg 50% if it reaches the threshold it moves to open state
+if the failure rate exceeded the threshold it moves to open (basicaly it fails if it moves to open state)
+
+half open: it will make limited number of calls to other ms (for eg: 3). if it succeeded it moves to closed or it will wait for 3 calls if it doesnt pass it moves to open 
+from closed to open after reaching threshold and wait for 5s and then move to half-open

@@ -41,7 +41,7 @@
 		</dependency>	
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId> <!-- rabbit mq for refreshing cloud config for all the microservices -->
 		</dependency>
 
 		<dependency>
