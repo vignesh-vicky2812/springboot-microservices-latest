@@ -21,3 +21,14 @@ docker login (to login)
 docker tag springboot-docker-demo vigneshcpt/springboot-docker-demo:0.1.RELEASE (repo creation /also image)
 docker push vigneshcpt/springboot-docker-demo:0.1.RELEASE
 docker pull vigneshcpt/springboot-docker-demo:0.1.RELEASE
+
+
+
+(pull and run mysql image in docker container)
+docker network create springboot-mysql-net (create network)
+docker network ls
+docker run --name mysqldb --network springboot-mysql-net -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=employeedb -d mysql
+docker logs -f cb8f
+docker exec -it cb8f bash
+mysql -u root -p
+show databases;
