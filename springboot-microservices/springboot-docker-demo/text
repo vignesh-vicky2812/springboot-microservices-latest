@@ -1,0 +1,23 @@
+docker container is a runtime version of a docker image
+
+docker build -t springboot-docker-demo .
+mvn clean package
+docker images
+docker build -t springboot-docker-demo:0.1.RELEASE .
+docker run -p 8080:8080 springboot-docker-demo
+
+docker ps (for checking running containers)
+docker run -p 8081:8080 springboot-docker-demo  (container port-8080 with host port-8081)
+
+
+how to run docker container in a detached(background) mode
+docker run -p 8081:8080 -d springboot-docker-demo
+docker logs -f 5c02 (first four digits of the above command execution i.e container id)
+docker ps (see all the containers)
+
+docker stop 5c02 (stop the container)
+
+docker login (to login)
+docker tag springboot-docker-demo vigneshcpt/springboot-docker-demo:0.1.RELEASE (repo creation /also image)
+docker push vigneshcpt/springboot-docker-demo:0.1.RELEASE
+docker pull vigneshcpt/springboot-docker-demo:0.1.RELEASE
