@@ -1,5 +1,0 @@
-package net.vignesh.springbootrestapi.controller;
-
-public class HelloWorldController {
-
-}
