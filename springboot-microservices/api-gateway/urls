@@ -24,3 +24,9 @@ if the failure rate exceeded the threshold it moves to open (basicaly it fails i
 
 half open: it will make limited number of calls to other ms (for eg: 3). if it succeeded it moves to closed or it will wait for 3 calls if it doesnt pass it moves to open 
 from closed to open after reaching threshold and wait for 5s and then move to half-open
+
+
+rabbitmq is nothing but a spring cloud bus used to refresh the configuration for all the microservices(another one is apache kafka)
+run docker of rabbitmq
+docker pull rabbitmq:3.11.0
+docker run --rm -it -p 5672:5672 rabbitmq:3.11.0
