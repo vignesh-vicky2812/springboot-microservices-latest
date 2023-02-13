@@ -3,7 +3,7 @@ each kafka broker has list of topics.
 each kafka cluster should have atleast three kafka brokers
 topics is like a table in a database	
 topics can be divided into partitions (and an offset is a unique identifier for a specific message within a partition of a topic.each message in the partition is assigned a sequential and unique offset, starting from 0)
-zookeeper will take care of the kafka broker in the cluster
+zookeeper will take care of the kafka brokers in the cluster
 
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties (start zookeeper service)
 .\bin\windows\kafka-server-start.bat .\config\server.properties (start kafka broker service on windows)
