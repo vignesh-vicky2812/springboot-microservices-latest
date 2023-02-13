@@ -127,7 +127,6 @@ INDEX VERSION 1.131+C:\Users\DELL\Desktop\springboot-microservices-latest\.metad
 849352957.index
 293549703.index
 2435738486.index
-2284447148.index
 1889658511.index
 2366822646.index
 2419505063.index
