@@ -1,0 +1,5 @@
+package com.rabbitmq.springboot.config;
+
+public class RabbitMQConfig {
+
+}

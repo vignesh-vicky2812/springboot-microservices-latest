@@ -1,0 +1,14 @@
+rabbitmq is one of the simplest freely available options for implementing messaging queues
+
+producer - exchange - queue - consumer
+
+exchange acts as a intermediate between producer and queue(can have multiple queues also)
+exchange will route the message to the different queues.
+
+routing key decides how to route the message to queues. the routing key is like an address for the message 
+
+binding is a link between queue and exchange
+
+docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3.11.9-management
+15672: rabbitmq management website
+5672: rabbitmq client connections
