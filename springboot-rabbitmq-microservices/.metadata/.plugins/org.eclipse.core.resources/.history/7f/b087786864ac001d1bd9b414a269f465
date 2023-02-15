@@ -1,5 +1,0 @@
-package com.rabbitmq.springboot.publisher;
-
-public class RabbitMQProducer {
-
-}
